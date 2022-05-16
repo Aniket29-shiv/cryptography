@@ -1,9 +1,14 @@
-plaintext = input('Enter the message: ')
-key = 8
+plaintext = str(input("Enter the msg: "))
+key = int(input("Enter a single digit: "))
 
-ciphertext = [''] * key
-# print(ciphertext)
+def pad(text):
+    while len(text)%key !=0:
+        text += " "
+    return text
 
+plaintext = pad(plaintext)
+
+ciphertext = ['']*key
 
 for col in range(key):
     pointer = col
@@ -11,18 +16,23 @@ for col in range(key):
         ciphertext[col] += plaintext[pointer]
 
         pointer += key
+
 secret = ''.join(ciphertext)
-print(secret)
+print("Encrypted:",secret)
 leng = len(ciphertext[0])
-result = [''] * leng
 
-
+plain = ['']*leng
 for col in range(leng):
     pointer = col
     while pointer < len(secret):
-        result[col] += secret[pointer]
-        pointer += leng
+        plain[col] += secret[pointer]
 
-real = ''.join(result)
-print(result)
-print(real)
+        pointer += leng
+result = ''.join(plain)
+
+print("Decrypted: ",result)
+
+# Enter the msg: Hello there boys
+# Enter the key in single digit: 5
+# Encryption:  H eset  lhb leo ory 
+# Decryption:  Hello there boys
