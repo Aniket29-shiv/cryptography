@@ -2,33 +2,28 @@
 plaintext = str(input("Enter the msg: "))
 key = int(input("Enter the key in single digit: "))
 
-def pad(text):
-    while len(text) % key != 0:
-        text += " "
-    return text
+ciphertext = [''] * key
+# print(ciphertext)
 
-plaintext = pad(plaintext)
 
-ciphertext = ['']*key
+for col in range(key):
+    pointer = col
+    while pointer < len(plaintext):
+        ciphertext[col] += plaintext[pointer]
 
-for column in range(key):
-    pointer = column 
-    while pointer<len(plaintext):
-        ciphertext[column] += plaintext[pointer]
         pointer += key
-
 secret = ''.join(ciphertext)
-print("Encryption: ",secret)
+print(secret)
+leng = len(ciphertext[0])
+result = [''] * leng
 
-plain = ['']*key
-key2 = len(ciphertext[0])
 
-for column in range(key2):
-    pointer = column
-    while pointer<len(secret):
-        plain[column] += secret[pointer]
-        pointer += key2
+for col in range(leng):
+    pointer = col
+    while pointer < len(secret):
+        result[col] += secret[pointer]
+        pointer += leng
 
-result = ''.join(plain)
-
-print("Decryption: ",result)
+real = ''.join(result)
+print(result)
+print(real)
